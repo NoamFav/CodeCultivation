@@ -1,22 +1,21 @@
 class Plant:
-    name: str
-    height: float
-    age: int
-
     def __init__(self, name: str, height: float, age: int) -> None:
         self.name = name
         self.height = height
         self.age = age
 
-    def show(self) -> None:
-        print(f"{self.name}: {self.height}cm, {self.age} days old")
+    def __str__(self) -> str:
+        return f"{self.name}: {self.height}cm, {self.age} days old"
 
-
-def factory(name: str, height: float, age: int) -> None:
-    print("=== Plant Factory Output ===")
-    plant: Plant = Plant("Lilith", 10, 10)
-    print(f"Created: {plant.show()}")
+    def grow(self, rate: float, days: int) -> None:
+        print(self)
+        for i in range(days):
+            print(f"=== Day {i + 1} ===")
+            self.height = round(self.height + rate, 1)
+            self.age += 1
+            print(self)
 
 
 if __name__ == "__main__":
-    factory("Lilith", 10, 10)
+    print("=== Plant Factory Output ===")
+    Plant("Lilith", 10, 10)
